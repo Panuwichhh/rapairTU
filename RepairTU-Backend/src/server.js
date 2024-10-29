@@ -5,13 +5,8 @@ const app = express();
 const Users = require("../models/user");
 const { connectAppDB } = require('./dbconfig');
 const cors = require('cors');
-const path = require('path');
-const helmet = require('helmet');
 // const insertRandomUsers = require('../models/insertRandomUsers')
 
-
-
-app.use('/repairtuImage', express.static(path.join(__dirname, '../repairtuImage')));
 app.use(cors());
 //tell express to use json
 app.use(express.json());
@@ -28,9 +23,6 @@ app.get('/users', async (req, res) => {
     }
 })
 
-
-
-
 app.get('/users/:id', async (req, res) => {
     const userId = req.params.id;
     try {
@@ -42,6 +34,7 @@ app.get('/users/:id', async (req, res) => {
 })
 
 app.use("/api", route);
+// app.use('/repairtuImage', express.static(path.join(__dirname, '../repairtuImage')));
 
 app.listen(process.env.SERVER_PORT || 3000, () => {
     console.log("Server connected...");

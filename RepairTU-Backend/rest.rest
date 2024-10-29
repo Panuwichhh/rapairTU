@@ -13,7 +13,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/api/upload
+GET http://localhost:3000/api/upload/671bcfa6359908082262c19c
 //see requests list
 
 ###

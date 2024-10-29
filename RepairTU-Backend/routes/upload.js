@@ -69,12 +69,21 @@ router.get('/upload', async (req, res) => {
     }
 })
 
+router.get('/upload/:postId', async (req, res) => {
+    const postId = req.params.postId;
+    console.log(postId);
+    try {
+        const request = await UploadM.findOne({ _id: postId });
+        res.json(request);
+    } catch (err) {
+        res.status(500).json({ message: err.message});
+    }
+})
+
 router.get('/upload/login', authenticateToken, (req, res) => {
     res.json(req.user);
 })
 
-router.get('/upload/image/:id', (req, res) => {
-    res.render('/repairtuImage'+id);
-})
+
 
 module.exports = router;
