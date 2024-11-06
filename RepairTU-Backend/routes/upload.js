@@ -1,10 +1,12 @@
 const express = require('express');
 const UploadM = require('../models/upload');
+const UploadAdminM = require('../models/adminUpload');
 const authenticateToken = require('./authenticateToken');
 const multer = require('multer')
 const fs = require('fs');
 const path = require('path');
 const router = express();
+const asd = multer();
 
 //multer config
 const storage = multer.diskStorage({
@@ -12,12 +14,6 @@ const storage = multer.diskStorage({
         callback(null, './repairtuImage');
     },
     filename: function (req, file, callback) {
-        // const fileName = file.originalname
-        // let dotIndex = fileName.indexOf(".");
-        // let subString = fileName.substring(0, dotIndex);
-        // let fileType = "."+fileName.substring(dotIndex+1);
-        // const newFilename = subString + "_" + req.user.userId+ fileType;
-        // req.savedFileName = newFilename;
         const originalName = file.originalname;
         const fileExtension = path.extname(originalName);
         const baseName = path.basename(originalName, fileExtension);
@@ -49,9 +45,30 @@ router.post('/upload', authenticateToken, upload.array('image'), async (req, res
     req.body.username = req.user.username;
     req.body.image_path = req.imagePath;
     const request = req.body;
-    // console.log(request);
     try {
         const insertData = await UploadM.insertMany(request);
+        console.log("insertData Success\n"+insertData);
+        res.status(201).json({ message: "success"});
+    } catch (err) {
+        console.error(err);
+        res.status(500);
+    }
+})
+
+router.post('/uploadAdmin', authenticateToken, upload.array('image'),async (req, res) => {
+    req.body.userId = req.user.userId;
+    req.body.username = req.user.username;
+    req.body.image_path = req.imagePath; 
+    const request = req.body;
+    try {
+        const insertData = await UploadAdminM.insertMany(request);
+        const filter = await UploadM.findOne({ _id: req.body.referentPost });
+        const updateStatus = {
+            $set: {
+                status: "repaired"
+            }
+        }
+        const updateResult = await UploadM.updateOne(filter, updateStatus);
         console.log("insertData Success\n"+insertData);
         res.status(201).json({ message: "success"});
     } catch (err) {
@@ -69,9 +86,13 @@ router.get('/upload', async (req, res) => {
     }
 })
 
+router.get('/upload/getUser', authenticateToken, (req, res) => {
+    res.json(req.user);
+})
+
 router.get('/upload/:postId', async (req, res) => {
     const postId = req.params.postId;
-    console.log(postId);
+    // console.log(postId);
     try {
         const request = await UploadM.findOne({ _id: postId });
         res.json(request);
@@ -80,10 +101,16 @@ router.get('/upload/:postId', async (req, res) => {
     }
 })
 
-router.get('/upload/login', authenticateToken, (req, res) => {
-    res.json(req.user);
+router.get('/uploadAdmin/:referencePostId', async (req, res) => {
+    const referencePostId = req.params.referencePostId;
+    // console.log(postId);
+    try {
+        const request = await UploadAdminM.findOne({ referencePostId: referencePostId });
+        console.log(request)
+        res.json(request);
+    } catch (err) {
+        res.status(500).json({ message: err.message});
+    }
 })
-
-
 
 module.exports = router;

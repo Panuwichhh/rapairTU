@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
         else if (check.password === req.body.password) {
 
             //user autherization
-            const user = { userId: check._id.toString(), username: check.username, studentId: check.studentId };
+            const user = { userId: check._id.toString(), username: check.username, studentId: check.studentId};
             const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' })
             const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
 
@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
             // await insertRefreshToken(refreshToken, check._id.toString());
 
             //accessToken always store in client side
-            res.json({ accessToken: accessToken, refreshToken: refreshToken });
+            res.json({ accessToken: accessToken, refreshToken: refreshToken, role: check.role});
         } else {
             res.status(401).json({ message: "Password incorect." });
         }

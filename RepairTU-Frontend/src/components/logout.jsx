@@ -11,6 +11,7 @@ function Logout() {
                 console.log(response.data.message);
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('refreshToken');
+                localStorage.removeItem('role');
                 navigate('/');
             }).catch(error => {
                 console.log("Logout failed: ", error)

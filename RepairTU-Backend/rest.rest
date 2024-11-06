@@ -13,12 +13,12 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/api/upload/671bcfa6359908082262c19c
+GET http://localhost:3000/api/upload/671a7c136f2983b49fec5b28
 //see requests list
 
 ###
 
-POST http://localhost:3000/api/upload
+GET  http://localhost:3000/api/upload
 
 ###
 POST http://localhost:3000/api/login/token 
@@ -29,23 +29,11 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/upload/login
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFhN2MxMzZmMjk4M2I0OWZlYzViMjgiLCJ1c2VybmFtZSI6InNhbSIsInN0dWRlbnRJZCI6IjEyMzQ1Njc4OTAiLCJpYXQiOjE3Mjk4NTU0MDEsImV4cCI6MTcyOTk0MTgwMX0.rL_pnqgH0FuFDipzmSxXbO0YXLvrNyQkIp-x4423QR8
-
+GET http://localhost:3000/api/upload/getUser
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzFhN2MxMzZmMjk4M2I0OWZlYzViMjgiLCJ1c2VybmFtZSI6InNhbSIsInN0dWRlbnRJZCI6IjEyMzQ1Njc4OTAiLCJpYXQiOjE3MzA5MDUwNjQsImV4cCI6MTczMDk5MTQ2NH0.2UG33ty9OD8IRmLtJFKo5ADeMITxJ8RbSt-I0TEPsGg
 
 ###
 POST http://localhost:3000/api/logout
 
 ###
-POST http://localhost:3000/api/createRequest
-Content-Type: application/json
-# front end create request json model
-
-{
-  "userId": "66ea717cfc429ca7f5b4d107",
-  "username": "ชอบเรียน เรียนดี",
-  "image_path": "/path",
-  "detail_message": "Hello world",
-  "location": "earth",
-  "request_status": "unfinish"
-}
+GET http://localhost:3000/api/uploadAdmin/672b9c042e2367f8e317469b
