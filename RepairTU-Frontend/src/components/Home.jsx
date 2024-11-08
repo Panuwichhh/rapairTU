@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react';
 
 function Home() {
+
     const navigate = useNavigate();
     const role = localStorage.getItem('role');
 
@@ -10,11 +12,19 @@ function Home() {
         else navigate('/Upload');
     }
 
+    // เริ่มต้น false
+    const [fadeIn, setFadeIn] = useState(false);
+
+    useEffect(() => {
+        // เมื่อหน้าโหลดเสร็จจะทำให้ opacity เป็น 100
+        setFadeIn(true);
+    }, [])
     return (
         <>
-
-            <div className="w-full  min-h-screen flex flex-col items-center justify-center  lg:flex-row bg-[#F6F6F6]">
-
+            {/* ตั้งค่า opacity-0 ทำให้โปร่งใส  opacity-0 transition-opacity*/}
+        <div
+            className={`${fadeIn ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000 w-full min-h-screen flex flex-col items-center justify-center lg:flex-row bg-[#F6F6F6]`}
+        >
                 <div className="w-full flex flex-col items-center justify-center lg:flex-row bg-[#F6F6F6]">
 
                     <div className="w-full ">
@@ -39,8 +49,8 @@ function Home() {
                     <div className="flex flex-col items-center w-full h-96 justify-center ">
 
                         <div className="flex flex-col items-center w-full h-96 justify-center ">
-                            <i className="text-[10rem] sm:text-[15rem] xl:text-[20rem] text-[#340000] fa-solid fa-screwdriver-wrench mb-5"></i>
-                            <Link onClick={handleClick} ><button className="w-44 h-12 sm:w-60 sm:h-14 font-black m-5 bg-[#E20B0B] text-white rounded-3xl hover:opacity-80 hover:text-yellow-400 shadow-lg shadow-black/35">GET STARTED</button></Link>
+                            <i className="text-[10rem] sm:text-[15rem] xl:text-[20rem] text-[#340000] fa-solid fa-screwdriver-wrench mb-10"></i>
+                            <Link  onClick={handleClick} > <button className=" hover:scale-110  duration-500 w-44 h-12 sm:w-60 sm:h-14 font-black m-5 bg-[#E20B0B] text-white rounded-3xl hover:opacity-80 hover:text-orange-300 shadow-lg shadow-black/35">GET STARTED</button></Link>
                         </div>
                     </div>
                 </div>
@@ -49,4 +59,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Home;
