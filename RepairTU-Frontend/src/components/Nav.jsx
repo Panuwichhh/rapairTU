@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Nav() {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [account, setAccount] = useState(null);
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/users/${userId}`, { timeout: 2000 });
+        console.log("Fetched data:", response.data);
+        const data = response.data;
+        setUsername(data); // Assuming data contains username directly
+      } catch (err) {
+        console.error("Error fetching data", err);
+      }
+    };
+      fetchData();
+  }, [userId]); // Only re-run if userId changes
   
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -69,6 +83,11 @@ function Nav() {
             </ul>
           </div>
         </div>
+
+          {/* Display Username */}
+          {username && (
+            <div className="text-gray-600 pr-4">Welcome, {username}</div>
+          )}
 
         {/* Mobile Menu */}
         {isMenuOpen && (
