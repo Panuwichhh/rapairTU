@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 function Nav() {
   const [isMenuOpen, setMenuOpen] = useState(false);
-
+  const [account, setAccount] = useState(null);
+  
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
@@ -57,6 +58,9 @@ function Nav() {
                   Status
                 </Link>
               </li>
+              {!isLoginPage && <li>
+                <div className="P"></div>
+              </li>}
               {!isLoginPage && <li>
                 <Link to="/logout" className="hover:text-orange-200 hover:bg-red-500 duration-500 text-black px-5 py-1 mx-4 bg-red-500 text-white rounded-lg">
                   Logout

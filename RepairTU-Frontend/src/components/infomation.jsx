@@ -12,17 +12,17 @@ function Info() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/upload/${postId}`, { timeout: 2000 });
+                console.log("Fetched data:", response.data);
                 const data = response.data;
                 setPostInfo(data);
             } catch (err) {
                 console.error("Error fetching data", err);
             }
         };
-
         fetchData();
     }, [postId]);
 
-    if (!postInfo) return <p>Loading...</p>; // Display a loading message while data is being fetched
+    if (!postInfo) return  <p>Loading...</p>; // Display a loading message while data is being fetched
     return (
         <>
             <div className='w-full flex flex-col md:flex-row flex-wrap justify-center items-center bg-[#F6F6F6]'>
