@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Upload() {
-  const navigate = useNavigate();
+const navigate = useNavigate();
 
   const [file, setFile] = useState(null); // เก็บไฟล์ที่ผู้ใช้อัปโหลด
   const [value, setValue] = useState({
@@ -34,21 +34,21 @@ function Upload() {
     formData.append('location', value.location);
     formData.append('issue', value.issue);
     formData.append('details', value.details);
-
+ 
     axios.post('http://localhost:3000/api/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        Authorization: "Bearer " + localStorage.getItem('accessToken')
+        Authorization: "Bearer "+localStorage.getItem('accessToken')
       },
     })
-      .then((response) => {
-        console.log('Success', response.data);
-        alert("Success")
-        navigate('/Status');
-      })
-      .catch((error) => {
-        console.log('Error', error.message);
-      });
+    .then((response) => {
+      console.log('Success', response.data);
+      alert("Success")
+      navigate('/Status');
+    })
+    .catch((error) => {
+      console.log('Error', error.message);
+    });
   };
 
   return (
@@ -58,7 +58,7 @@ function Upload() {
         <form className="justify-center flex max-xl:grid max-xl:grid-cols-1" onSubmit={handleSubmit}>
           <div className="flex item-center justify-center w-full h-[50rem] max-xl:h-[30rem] max-lg:w-full ">
             {/* กำหนดพื้นหลังเป็นภาพที่ผู้ใช้อัปโหลด */}
-            <label htmlFor="dropzone-file"
+            <label htmlFor="dropzone-file" 
               className="flex flex-col items-center justify-center h-auto w-full mx-5 mb-[2rem] mt-[3rem] border rounded-[35px] cursor-pointer hover:bg-gray-300 border-4 border-dashed border-red-600"
               style={{
                 backgroundImage: preview ? `url(${preview})` : 'none', // ตั้งพื้นหลังเป็นภาพที่อัปโหลด
@@ -75,7 +75,7 @@ function Upload() {
                   </>
                 )}
               </div>
-              <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} />
+              <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} required />
             </label>
           </div>
 
@@ -85,11 +85,15 @@ function Upload() {
               <div className="mb-5">
                 <label className="text-white block mb-2 text-lg font-medium">สถานที่</label>
                 <select name="location" onChange={handleInputChange} value={value.location} className="shadow-sm bg-white border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" required>
-                  <option value="">เลือกสถานที่</option>
-                  <option value="Engr">วิศวะ</option>
-                  <option value="Sc">Sc</option>
-                  <option value="Jc">Jc</option>
-                  <option value="Hospital">โรงพยาบาล</option>
+                <option value="">เลือกสถานที่</option>
+                  <option value="SIIT">SIIT</option>
+                  <option value="วิศวะ">คณะวิศวกรรมศาสตร์</option>
+                  <option value="วิศวะ">หอสมุดป๋วย</option>
+                  <option value="SC">SC</option>
+                  <option value="SC3">SC3</option>
+                  <option value="โรงอาหาร SC">โรงอาหาร SC</option>
+                  <option value="โรงอาหาร J ฉ">โรงอาหาร JC</option>
+                  <option value="โรงพยาบาล">โรงพยาบาล</option>
                 </select>
               </div>
               <div className="mb-5">
