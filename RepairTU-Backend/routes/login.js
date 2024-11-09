@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
             // await insertRefreshToken(refreshToken, check._id.toString());
 
             //accessToken always store in client side
-            res.json({ accessToken: accessToken, refreshToken: refreshToken, role: check.role});
+            res.json({ accessToken: accessToken, refreshToken: refreshToken, role: check.role, username: check.username});
         } else {
             res.status(401).json({ message: "Password incorect." });
         }

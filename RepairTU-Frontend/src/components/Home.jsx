@@ -6,6 +6,7 @@ function Home() {
 
     const navigate = useNavigate();
     const role = localStorage.getItem('role');
+    const username = localStorage.getItem('username');
 
     const handleClick = () => {
         if (role === "admin") navigate('/Status');
@@ -16,6 +17,8 @@ function Home() {
     const [fadeIn, setFadeIn] = useState(false);
 
     useEffect(() => {
+        console.log(role)
+        console.log(username)
         // เมื่อหน้าโหลดเสร็จจะทำให้ opacity เป็น 100
         setFadeIn(true);
     }, [])

@@ -31,6 +31,7 @@ function Login() {
                 localStorage.setItem("accessToken", response.data.accessToken,);
                 localStorage.setItem("refreshToken", response.data.refreshToken);
                 localStorage.setItem("role", response.data.role);
+                localStorage.setItem("username", response.data.username);
                 //ย้ายไปหน้า home
                 window.location.href = '/Home';
             })

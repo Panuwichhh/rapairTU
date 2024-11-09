@@ -3,21 +3,8 @@ import { Link } from "react-router-dom";
 
 function Nav() {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [username, setUsername] = useState(null);
+  const username  = localStorage.getItem('username');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/users/${userId}`, { timeout: 2000 });
-        console.log("Fetched data:", response.data);
-        const data = response.data;
-        setUsername(data); // Assuming data contains username directly
-      } catch (err) {
-        console.error("Error fetching data", err);
-      }
-    };
-      fetchData();
-  }, [userId]); // Only re-run if userId changes
   
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -73,21 +60,20 @@ function Nav() {
                 </Link>
               </li>
               {!isLoginPage && <li>
-                <div className="P"></div>
+                          {/* Display Username */}
+          {username && (
+            <div className=" bg-red-500 p-1 pl-2 rounded-lg text-white pr-4"><i className="fa-solid fa-circle-user"></i> {username}</div>
+          )}
               </li>}
               {!isLoginPage && <li>
-                <Link to="/logout" className="hover:text-orange-200 hover:bg-red-500 duration-500 text-black px-5 py-1 mx-4 bg-red-500 text-white rounded-lg">
-                  Logout
+                <Link to="/Logout" className="hover:text-orange-400 text- duration-500 px-5 py-7">
+                Logout
                 </Link>
               </li>}
             </ul>
           </div>
         </div>
 
-          {/* Display Username */}
-          {username && (
-            <div className="text-gray-600 pr-4">Welcome, {username}</div>
-          )}
 
         {/* Mobile Menu */}
         {isMenuOpen && (
