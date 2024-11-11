@@ -101,19 +101,6 @@ router.get('/upload/:postId', async (req, res) => {
     }
 })
 
-router.get('/user/:userId', async (req, res) => {
-    const userId = req.params.userId;
-    // console.log(postId);
-    try {
-        const request = await UploadM.findOne({ _id: userId });
-        res.json(request);
-    } catch (err) {
-        res.status(500).json({ message: err.message});
-    }
-})
-
-
-
 router.get('/uploadAdmin/:referencePostId', async (req, res) => {
     const referencePostId = req.params.referencePostId;
     // console.log(postId);

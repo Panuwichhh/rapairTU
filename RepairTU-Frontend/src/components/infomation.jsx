@@ -22,7 +22,13 @@ function Info() {
         fetchData();
     }, [postId]);
 
-    if (!postInfo) return  <p>Loading...</p>; // Display a loading message while data is being fetched
+
+    // useEffect(() => {
+    //     axios,g
+    // }, []);
+
+
+    if (!postInfo) return  <p>loading...</p>; // Display a loading message while data is being fetched
     return (
         <>
             <div className='w-full flex flex-col md:flex-row flex-wrap justify-center items-center bg-[#F6F6F6]'>

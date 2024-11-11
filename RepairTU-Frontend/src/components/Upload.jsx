@@ -92,7 +92,7 @@ const navigate = useNavigate();
                   <option value="SC">SC</option>
                   <option value="SC3">SC3</option>
                   <option value="โรงอาหาร SC">โรงอาหาร SC</option>
-                  <option value="โรงอาหาร J ฉ">โรงอาหาร JC</option>
+                  <option value="โรงอาหาร JC">โรงอาหาร JC</option>
                   <option value="โรงพยาบาล">โรงพยาบาล</option>
                 </select>
               </div>

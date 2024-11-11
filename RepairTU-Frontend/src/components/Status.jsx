@@ -86,7 +86,7 @@ function Status() {
                             {isRepaired ? (
                                 // Display items when status is "Repaired"
                                 repairedItems.map((item, index) => (
-                                    <Link to={`/Infomation/${item._id.toString()}`} key={index}>
+                                    <Link onClick={() => {sessionStorage.setItem("postId", item._id);}} to={`/Infomation/${item._id.toString()}`} key={index}>
                                         <div className="flex justify-between p-2 bg-white shadow-inner hover:shadow-gray-500">
                                             <div className="w-1/5 flex items-center justify-center">
                                                 <div className="w-20 h-20 rounded-md overflow-hidden border-2 border-gray-300 shadow-lg">
@@ -113,7 +113,7 @@ function Status() {
                             ) : (
                                 // Display items when status is "Pending Repair"
                                 pendingItems.map((item, index) => (
-                                    <Link to={`/Infomation/${item._id.toString()}`} key={index}>
+                                    <Link onClick={() => {sessionStorage.setItem("postId", item._id);}} to={`/Infomation/${item._id.toString()}`} key={index}>
                                         <div className="flex justify-between p-2 bg-white shadow-inner hover:shadow-gray-500">
                                             <div className="w-1/5 flex items-center justify-center">
                                                 <div className="w-20 h-20 rounded-md overflow-hidden border-2 border-gray-300 shadow-lg">

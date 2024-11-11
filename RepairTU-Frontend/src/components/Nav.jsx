@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Nav() {
@@ -22,7 +22,12 @@ function Nav() {
           </div>
 
           {/* Toggle Menu */}
+          
           <div className="md:hidden">
+            <div className="flex">
+            {username && (
+            <div className="p-1 pl-2 text-xl text-gray-500  mx-1"><i className="fa-solid fa-circle-user"></i> {username}</div>
+          )}
             <button
               id="menu-toggle"
               type="button"
@@ -42,7 +47,7 @@ function Nav() {
               </svg>
             </button>
           </div>
-
+          </div>
           {/* Main Menu (for larger screens) */}
           <div
             className="hidden w-full md:block md:w-auto"

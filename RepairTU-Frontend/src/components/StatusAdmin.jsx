@@ -86,7 +86,7 @@ function StatusAdmin() {
                                 // Display items when status is "Repaired"
                                 repairedItems.map((item, index) => (
                                     <Link key={index} to={`/Infomation/${item._id.toString()}`}
-                                    onClick={() => {sessionStorage.setItem("status", item.status);}}
+                                    onClick={() => {sessionStorage.setItem("postId", item._id);}}
                                     >
                                         <div className="flex justify-between p-2 bg-white shadow-inner hover:shadow-gray-500">
                                             <div className="w-1/5 flex items-center justify-center">
@@ -114,7 +114,8 @@ function StatusAdmin() {
                             ) : (
                                 // Display items when status is "Pending Repair"
                                 pendingItems.map((item, index) => (
-                                    <Link to={`/Infomation/${item._id.toString()}`} key={index}>
+                                    <Link onClick={() => {sessionStorage.setItem("postId", item._id);}}  to={`/Infomation/${item._id.toString()}`} key={index}>
+                                         
                                         <div className="flex justify-between p-2 bg-white shadow-inner hover:shadow-gray-500">
                                             <div className="w-1/5 flex items-center justify-center">
                                                 <div className="w-20 h-20 rounded-md overflow-hidden border-2 border-gray-300 shadow-lg">
@@ -133,11 +134,11 @@ function StatusAdmin() {
                                                 <div className="text-[9px] sm:text-lg text-gray-500">{item.location}</div>
                                             </div>
                                             {/* ปุ่ม Edit */}
-                                            <Link key={index} to = '/Upload' 
+                                            <Link key={index} to = '/Upload/' 
                                             onClick={() => {sessionStorage.setItem("postId", item._id);}}
                                             >
                                             <div class="w-20 flex justify-center items-center">
-                                                <button class="text-[10px] sm:text-xl w-8 h-3/5 sm:w-10 sm:h-4/5 bg-red-500 rounded-md shadow-lg text-white hover:opacity-80">Edit</button>
+                                                <button class="text-[10px] sm:text-xl w-8 m-2 h-3/5 sm:w-10 sm:h-4/5 bg-red-500 rounded-md shadow-lg text-white hover:opacity-80">Edit</button>
                                             </div>
                                             </Link>
                                             <div className="w-20 flex items-center justify-center">

@@ -46,23 +46,24 @@ function InforDone() {
                     <div className="w-full flex flex-col items-center">
                         <div className="flex flex-col items-start w-9/12  m-5 mx-auto">
                             {/* ใส่ชื่อสถานที่ */}
-                            <h1 className="font-bold text-4xl lg:text-6xl text-[#340000] text-left w-full indent-5">{postInfo.location}</h1>
+                            <h1 className="font-bold text-4xl lg:text-6xl text-[#340000] text-left w-full indent-5" value={postInfo.location} ></h1>
                             {/* ใส่เวลาที่รับแจ้ง */}
-                            <p className="text-left w-full indent-5">{postInfo.time}</p>
+                            <p className="text-left w-full indent-5" value={postInfo.time} ></p>
                         </div>
-                        <textarea name="Detail2" className="w-9/12  h-56 sm:h-72 bg-white shadow-[2px_2px_5px_rgba(0,0,0,0.5)] rounded-3xl mb-5 indent-5 p-3 outline-none overflow-y-auto" readOnly>
-                            {/* ใส่รายละเอียด */}
-                            {postInfo.details}
-                        </textarea>
+                        <textarea 
+  name="Detail2" 
+  className="w-9/12 h-56 sm:h-72 bg-white shadow-[2px_2px_5px_rgba(0,0,0,0.5)] rounded-3xl mb-5 indent-5 p-3 outline-none overflow-y-auto" 
+  readOnly 
+  value={postInfo.details} // ใช้ value แทนการใช้ children
+/>
 
 
                         <div className="flex flex-col items-start w-9/12  m-2 mx-auto">
                             {/* ใส่เวลาเมื่อทำเสร็จ */}
-                            <p className="text-left w-full indent-5">{adminPost.time}</p>
+                            <p className="text-left w-full indent-5" value={postInfo.time} ></p>
                         </div>
-                        <textarea name="Detail2" className="w-9/12  h-56 sm:h-72 bg-white shadow-[2px_2px_5px_rgba(0,0,0,0.5)] rounded-3xl mb-5 indent-5 p-3 outline-none overflow-y-auto" readOnly>
+                        <textarea name="Detail2" className="w-9/12  h-56 sm:h-72 bg-white shadow-[2px_2px_5px_rgba(0,0,0,0.5)] rounded-3xl mb-5 indent-5 p-3 outline-none overflow-y-auto" readOnly value={postInfo.details}>
                             {/* ใส่รายละเอียด */}
-                            {adminPost.details}
                         </textarea>
                         {/* ปุ่มกลับมาหน้า Status */}
                         <Link to="/Status"><button className="w-32 h-10  bg-[#E20B0B] text-white rounded-3xl m-10 hover:opacity-80 hover:text-yellow-400 shadow-lg shadow-black/35">
